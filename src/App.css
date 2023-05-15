@@ -1,0 +1,58 @@
+.btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.btn {
+  width: 178px;
+  height: 30px;
+  text-align: center;
+  border: 1px solid rgb(166, 154, 154);
+  border-radius: 7px;
+  background-image: radial-gradient(circle, #000000 , #130F40);
+  padding: 20px;
+  color: beige;
+  font-weight: bold;
+  font-size: 30px;
+  
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  gap: 40px;
+}
+.graph{
+  margin-top: 5px;
+  margin-left: 20px;
+  margin-right: 25px;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 5px 10px 18px #0d0a2c;
+  border: 1px solid white;
+  width: 80vw;
+  background-image: radial-gradient(circle, #000000 , #130F40);
+
+
+}
+
+.export {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 170px;
+  height: 37px;
+  text-align: center;
+  border: 1px solid rgb(166, 154, 154);
+  border-radius: 7px;
+  background-image: radial-gradient(circle, #000000 , #130F40);
+  padding: 20px;
+  color: beige;
+  font-weight: bold;
+  font-size: 15px;
+  margin-top: 20px;
+}
