@@ -43,4 +43,4 @@ const DataContainer = () => {
   );
 };
 
-export default DataContainer;
+export default DataContainer
