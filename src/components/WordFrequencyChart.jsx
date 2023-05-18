@@ -85,4 +85,4 @@ const WordFrequencyChart = ({ wordFrequency }) => {
   );
 };
 
-export default WordFrequencyChart;
+export default WordFrequencyChart
