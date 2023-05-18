@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { sortMapByValue } from "../array.js";
 import axios from 'axios';
-import { sortMapByValue } from '../array.js';
-import ExportButton from './ExportButton.jsx';
-import WordFrequencyChart from './WordFrequencyChart.jsx';
+import ExportButton from "./ExportButton.jsx";
+import WordFrequencyChart from "./WordFrequencyChart.jsx";
 
 const DataContainer = () => {
   const [wordFrequency, setWordFrequency] = useState(new Map());
-  const [csvData, setCsvData] = useState('');
 
   const fetchData = async () => {
     try {
@@ -28,7 +27,7 @@ const DataContainer = () => {
       const sortedFrequencyMap = sortMapByValue(frequencyMap, 21);
       setWordFrequency(sortedFrequencyMap);
     } catch (error) {
-      console.error('Some error occured :', error.message);
+      console.error('Error fetching data:', error.message);
     }
   };
 
@@ -36,22 +35,10 @@ const DataContainer = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    const limit = 21;
-    const numbers = Array.from(wordFrequency.values()).slice(0, limit);
-    const chartData = Array.from(wordFrequency.keys()).slice(0, limit);
-
-    const csv = Array.from(wordFrequency.entries())
-      .map(([word, frequency]) => `${word},${frequency}`)
-      .join('\n');
-
-    setCsvData(csv);
-  }, [wordFrequency]);
-
   return (
-    <div className="container">
-      <WordFrequencyChart data={{ series: [{ data: Array.from(wordFrequency.values()) }] }} />
-      <ExportButton csvData={csvData} />
+    <div className='container'>
+      <WordFrequencyChart wordFrequency={wordFrequency} />
+      <ExportButton csvData={Array.from(wordFrequency.entries()).map(([word, frequency]) => `${word},${frequency}`).join('\n')} />
     </div>
   );
 };
