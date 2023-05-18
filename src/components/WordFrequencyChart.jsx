@@ -1,18 +1,25 @@
-import React from 'react';
-import Chart from 'react-apexcharts';
+import React, { useState, useEffect } from 'react';
+import Chart from "react-apexcharts";
 
-const WordFrequencyChart = ({ data }) => {
+const WordFrequencyChart = ({ wordFrequency }) => {
+  const [chartData, setChartData] = useState([]);
+
+  useEffect(() => {
+    const data = Array.from(wordFrequency.values()).slice(0, 20);
+    setChartData(data);
+  }, [wordFrequency]);
+
   const options = {
     chart: {
       toolbar: {
         show: false
       },
       height: 350,
-      type: 'bar'
+      type: 'bar',
     },
     tooltip: {
       enabled: true,
-      theme: 'dark'
+      theme: "dark",
     },
     plotOptions: {
       bar: {
@@ -20,19 +27,17 @@ const WordFrequencyChart = ({ data }) => {
         strokeWidth: 2,
         borderRadius: 4,
         colors: {
-          ranges: [
-            {
-              from: 0,
-              to: 9999,
-              color: '#ffffff',
-              borderColor: '#000000'
-            }
-          ]
+          ranges: [{
+            from: 0,
+            to: 9999,
+            color: '#ffffff',
+            borderColor: '#000000'
+          }]
         }
       }
     },
     stroke: {
-      width: 0.5
+      width: 0.5,
     },
     dataLabels: {
       enabled: false
@@ -44,38 +49,38 @@ const WordFrequencyChart = ({ data }) => {
       labels: {
         style: {
           colors: 'white',
-          fontSize: '14px'
+          fontSize: '14px',
         }
       },
       title: {
         text: 'Frequency of Words',
         style: {
           color: 'white',
-          fontSize: '20px'
+          fontSize: '20px',
         }
-      }
+      },
     },
     xaxis: {
-      categories: data.series[0].data.map((_, index) => index + 1),
+      categories: Array.from(wordFrequency.keys()).slice(0, 21),
       labels: {
         style: {
           colors: 'white',
-          fontSize: '14px'
+          fontSize: '14px',
         }
       },
       title: {
         text: 'Words',
         style: {
           color: 'white',
-          fontSize: '20px'
+          fontSize: '20px',
         }
-      }
+      },
     }
   };
 
   return (
     <div className="graph">
-      <Chart options={options} series={data.series} type="bar" height="450px" top="200px" />
+      <Chart options={options} series={[{ data: chartData }]} type="bar" height="450px" top="200px" />
     </div>
   );
 };
